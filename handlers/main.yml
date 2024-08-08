@@ -1,5 +1,5 @@
 ---
-- name: 'restart vmwaretools windows'
+- name: 'Restart vmwaretools windows'
   ansible.windows.win_service:
     name: VMTools
     state: restarted

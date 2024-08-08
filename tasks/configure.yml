@@ -18,12 +18,12 @@
       when:
         - wmwaretools_config is defined
         - wmwaretools_config | length > 0
-      notify: 'restart vmwaretools windows'
+      notify: 'Restart vmwaretools windows'
 
-    #- name: Copy a single file
-    #  ansible.windows.win_copy:
-    #    src: Disable-IPv6Components.ps1
-    #    dest: C:\Temp\test.ps1
-    #
-    #- name: windows test command
-    #  win_shell: C:\Temp\test.ps1
+#- name: Copy a single file
+#  ansible.windows.win_copy:
+#    src: Disable-IPv6Components.ps1
+#    dest: C:\Temp\test.ps1
+#
+#- name: windows test command
+#  win_shell: C:\Temp\test.ps1

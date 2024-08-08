@@ -1,6 +1,6 @@
 ---
-#- name: 'Include tasks for install'
-#  ansible.builtin.import_tasks: 'install.yml'
+- name: 'Include tasks for install'
+  ansible.builtin.import_tasks: 'install2.yml'
 
 #- setup:
 #    gather_subset: 'network'

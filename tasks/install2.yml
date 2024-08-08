@@ -18,29 +18,27 @@
       ( _vmwaretools_version_check.stdout_lines | length > 0 and
       vmwaretools_version not in _vmwaretools_version_check.stdout_lines[0].split(" ")[2] )
   block:
-   # - name: 'Download Windows Exporter into temporary location'
-   #   ansible.windows.win_get_url:
-   #     url: '{{ windows_exporter_download_url }}/{{ windows_exporter_package_name }}'
-   #     dest: '{{ ansible_env.TEMP }}\{{ windows_exporter_package_name }}'
-   #   check_mode: false
+    # - name: 'Download Windows Exporter into temporary location'
+    #   ansible.windows.win_get_url:
+    #     url: '{{ windows_exporter_download_url }}/{{ windows_exporter_package_name }}'
+    #     dest: '{{ ansible_env.TEMP }}\{{ windows_exporter_package_name }}'
+    #   check_mode: false
 
-   # - name: 'Install Windows Exporter'
-   #   ansible.windows.win_package:
-   #     path: '{{ ansible_env.TEMP }}\{{ windows_exporter_package_name }}'
-   #     state: present
-   #   when: not ansible_check_mode
+    # - name: 'Install Windows Exporter'
+    #   ansible.windows.win_package:
+    #     path: '{{ ansible_env.TEMP }}\{{ windows_exporter_package_name }}'
+    #     state: present
+    #   when: not ansible_check_mode
 
     - name: Create Directory if not exist
-      win_file:
+      ansible.windows.win_file:
         path: C:\temp
         state: directory
 
     - name: Download exe to winbox
-      win_get_url:
-        url:
-https://packages.vmware.com/tools/esx/latest/windows/x64/VMware-tools-11.1.1-16303738-x86_64.exe
+      ansible.windows.win_get_url:
+        url: https://packages.vmware.com/tools/esx/latest/windows/x64/VMware-tools-11.1.1-16303738-x86_64.exe
         dest: C:\temp\VMware-tools-11.1.1-16303738-x86_64.exe
 
     - name: Install Vmware tools Silent
-      win_command: C:\temp\VMware-tools-11.1.1-16303738-x86_64.exe /S /v
-"/qn REBOOT=R ADDLOCAL=ALL REMOVE=Hgfs"
+      ansible.windows.win_command: C:\temp\VMware-tools-11.1.1-16303738-x86_64.exe /S /v "/qn REBOOT=R ADDLOCAL=ALL REMOVE=Hgfs"
