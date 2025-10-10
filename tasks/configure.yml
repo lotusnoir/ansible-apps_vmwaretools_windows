@@ -11,18 +11,19 @@
         - item.ipv4 is defined
         - vmwaretools_primary_int_subnet in item.ipv4.address
 
-    - name: "Configure config file"
+    - name: 'Configure config file'
       ansible.windows.win_template:
-        src: "tools.conf.j2"
+        src: 'tools.conf.j2'
         dest: 'C:\ProgramData\VMware\VMware Tools\tools.conf'
       when:
         - wmwaretools_config is defined
         - wmwaretools_config | length > 0
-      notify: "Restart vmwaretools windows"
-# - name: Copy a single file
-#   ansible.windows.win_copy:
-#     src: Disable-IPv6Components.ps1
-#     dest: C:\Temp\test.ps1
+      notify: 'Restart vmwaretools windows'
+
+#- name: Copy a single file
+#  ansible.windows.win_copy:
+#    src: Disable-IPv6Components.ps1
+#    dest: C:\Temp\test.ps1
 #
-# - name: windows test command
-#   win_shell: C:\Temp\test.ps1
+#- name: windows test command
+#  win_shell: C:\Temp\test.ps1
